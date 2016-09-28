@@ -13,16 +13,31 @@ namespace BabaTempleAppAndroid
 		{
 			base.OnCreate (savedInstanceState);
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+            // Set our view from the "main" layout resource
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+            SetContentView (Resource.Layout.Main);
+
+            ActionBar.Tab tab = ActionBar.NewTab();
+    tab.SetText("Hello");
+            tab.SetIcon(Resource.Drawable.Icon);
+            tab.TabSelected += (sender, args) => {
+                // Do something when tab is selected
+            };
+
+            ActionBar.AddTab(tab);
+
+    tab = ActionBar.NewTab();
+    tab.SetText("About");
+         tab.SetIcon(Resource.Drawable.Icon);
+            tab.TabSelected += (sender, args) =>
+            {
+                // Do something when tab is selected
+            };
+    ActionBar.AddTab(tab);
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
 			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
 		}
 	}
 }
